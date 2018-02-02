@@ -1,21 +1,21 @@
-public class ArrayQueue impliments Queue{
+public class ArrayQueue<E> implements Queue<E>{
 
-  	int[] myData;
+  	E[] myData;
   	int back, front, size;
 
   	public ArrayQueue() {
-  		myData = new int[10];
+  		myData =(E[]) new Object[10];
   		front = 0;
   		back = 0;
   		size = 0;
   	} //ArrayQueue (constructor)
 
-  	public void add(int data) {
+  	public void add(E e) {
   		if (size == myData.length) {
-  			throw new IllegalStateException("queue is full -- add");
+  			throw new QueueFullException("queue is full -- add");
   		} //if
 
-  		myData[back] = data;
+  		myData[back] = e;
   		back++;
   		size++;
 
@@ -24,12 +24,12 @@ public class ArrayQueue impliments Queue{
   		} //if
   	} //add
 
-  	public int remove() {
+  	public E remove() {
   		if (isEmpty()) {
-  			throw new NoSuchElementException("queue is empty -- remove");
+  			throw new QueueEmptyException("queue is empty -- remove");
   		} //if
-  		int temp = myData[front];
-  		myData[front] = 0;
+  		E temp = myData[front];
+  		myData[front] = null;
   		front++;
   		size--;
 
@@ -40,9 +40,9 @@ public class ArrayQueue impliments Queue{
   		return temp;
   	} //remove
 
-  	public int element() {
+  	public E peek() {
   		if (isEmpty()) {
-  			throw new NoSuchElementException("queue is empty -- element");
+  			throw new QueueEmptyException("queue is empty -- element");
   		} //if
   		return myData[front];
   	} //element
@@ -55,6 +55,14 @@ public class ArrayQueue impliments Queue{
   		return (size == 0);
   	} //isEmpty
 
-  } //ArrayQueue (class)
+    public void resize(){
+      Object[] temp = new Object[myData.length+2];
+      int counter = 0;
+      for(int i = 0; i < myData.length; i++){
+        temp[i] = myData[counter];
+        counter++;
+      }
+      myData = (E[]) temp;
+    }
 
 }
