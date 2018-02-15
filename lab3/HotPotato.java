@@ -1,46 +1,94 @@
 import java.util.*;
 
 public class HotPotato{
-  public static int winner(Queue q){
-    int a = 0;
-    //We assume that it takes each player one second to pass the potato, and that
-    //One round of hot potato takes 8 seconds
-      while(q.peek() != null){
-        a = (int) q.remove();
-        if(q.peek() == null){
-          a = a;
-          q.remove();
-        }
-        else{
-          q.add(a);
-          int b = (int) q.remove();
-          q.add(b);
-          int c = (int) q.remove();
-          q.add(c);
-          int d = (int) q.remove();
-          q.add(d);
-          int e = (int) q.remove();
-          q.add(e);
-          int f = (int) q.remove();
-          q.add(f);
-          int g = (int) q.remove();
-          q.add(g);
-          q.remove();
-        }
-      }
-      return a;
-  }
+
   public static void main(String[] args){
+    ArrayQueue<String> q = new ArrayQueue<String>();
+    String name;
+
     Scanner scan = new Scanner(System.in);
 
-    Queue<Integer> q = new LinkedList<>();
-    System.out.println("How many players are playing?");
-    int p = scan.nextInt();
-    for (int i=1; p+1>i; i++){
-        q.add(i);
+    //get index of player
+    System.out.println("How many players do you want in this game?");
+    int num = scan.nextInt();
+
+    //add players
+    System.out.println("Please enter the names of players");
+    name = scan.nextLine();
+    while(q.size < num)
+    {
+      q.add(name);
+      name = scan.nextLine();
     }
-    Stream.of(q.toString()).forEach(System.out::println);
-    int winner = winner(q);
-    System.out.println("The winner is " + winner);
+
+    for(int i = 0; i < 8; i++){
+      String take = q.peek();
+      q.remove();
+      q.add(take);
+    }
+}
+}
+/*
+    //choose mode
+    System.out.println("Do you want to be an admin ot a player? (type 1 for admin, 2 for user)");
+    int answer = scan.nextInt();
+    if (answer == 1){
+      admin(p);
+    }
+    else if (answer == 2){
+      player(q);
+    }
+    else{
+      System.out.println("Please enter 1 or 2");
+    }
+
+    //check correctness
+    if(player(q) == admin(p)){
+      System.out.println("The prediction was correct!");
+    }
+
+    try {
+      q.remove();
+    } catch (QueueEmptyException e) {
+      System.out.println("Guess the queue was empty...");
+    } //try-catch
+  }
+
+  public static String admin(ArrayQueue<String> p){
+    /*Here is the part admin will
+    *predict winner with another queue
+    */
+    //The whole song is 8 person long
+/*
+    while(p.size > 1) {
+      for(int i = 0; i < 7; i++){
+        String take = p.peek();
+        p.remove();
+        p.add(take);
+      }
+      p.remove();
+    }
+    String prediction = p.peek();
+    System.out.println("The winner is: " + prediction);
+
+    return prediction;
+  }
+
+  public static String player(ArrayQueue<String> q){
+    /*Before there is only one person left,
+    *remove and readd 7 times and remove the 8th person
+
+    while(q.size > 1) {
+      for(int i = 0; i < 7; i++){
+        String take = q.peek();
+        q.remove();
+        q.add(take);
+        }
+        q.remove();
+    }
+    String winner = q.peek();
+    System.out.println("The winner is: " + winner);
+    return winner;
   }
 }
+*/

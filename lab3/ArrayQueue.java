@@ -54,7 +54,7 @@ public class ArrayQueue<E> implements Queue<E>{
   	public boolean isEmpty() {
   		return (size == 0);
   	} //isEmpty
-
+/*
     public void resize(){
       Object[] temp = new Object[myData.length+2];
       int counter = 0;
@@ -64,5 +64,5 @@ public class ArrayQueue<E> implements Queue<E>{
       }
       myData = (E[]) temp;
     }
-
+*/
 }
