@@ -61,7 +61,7 @@ public class HotPotato{
       p.remove();
     }
     String prediction = p.peek();
-    System.out.println("The winner is: " + prediction);
+    //System.out.println("The winner is: " + prediction);
 
     return prediction;
   }
