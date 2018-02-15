@@ -11,29 +11,21 @@ public class HotPotato{
     //get index of player
     System.out.println("How many players do you want in this game?");
     int num = scan.nextInt();
+    scan.nextLine();
 
     //add players
     System.out.println("Please enter the names of players");
-    name = scan.nextLine();
     while(q.size < num)
     {
-      q.add(name);
       name = scan.nextLine();
+      q.add(name);
     }
 
-    for(int i = 0; i < 8; i++){
-      String take = q.peek();
-      q.remove();
-      q.add(take);
-    }
-}
-}
-/*
     //choose mode
     System.out.println("Do you want to be an admin ot a player? (type 1 for admin, 2 for user)");
     int answer = scan.nextInt();
     if (answer == 1){
-      admin(p);
+      admin(q);
     }
     else if (answer == 2){
       player(q);
@@ -43,7 +35,7 @@ public class HotPotato{
     }
 
     //check correctness
-    if(player(q) == admin(p)){
+    if(player(q) == admin(q)){
       System.out.println("The prediction was correct!");
     }
 
@@ -59,7 +51,7 @@ public class HotPotato{
     *predict winner with another queue
     */
     //The whole song is 8 person long
-/*
+
     while(p.size > 1) {
       for(int i = 0; i < 7; i++){
         String take = p.peek();
@@ -77,7 +69,7 @@ public class HotPotato{
   public static String player(ArrayQueue<String> q){
     /*Before there is only one person left,
     *remove and readd 7 times and remove the 8th person
-
+    */
     while(q.size > 1) {
       for(int i = 0; i < 7; i++){
         String take = q.peek();
@@ -91,4 +83,3 @@ public class HotPotato{
     return winner;
   }
 }
-*/
