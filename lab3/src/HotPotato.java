@@ -73,9 +73,12 @@ public class HotPotato{
     while(q.size > 1) {
       for(int i = 0; i < 7; i++){
         String take = q.peek();
+        System.out.println("Now the potato is on "+take);
         q.remove();
         q.add(take);
         }
+        String quit = q.peek();
+        System.out.println("Now, "+quit+" is out!");
         q.remove();
     }
     String winner = q.peek();
