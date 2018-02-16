@@ -22,7 +22,7 @@ public class HotPotato{
     }
 
     //choose mode
-    System.out.println("Do you want to be an admin ot a player? (type 1 for admin, 2 for user)");
+    System.out.println("Do you want to be an admin or a player? (type 1 for admin, 2 for user)");
     int answer = scan.nextInt();
     if (answer == 1){
       admin(q);
