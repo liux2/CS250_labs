@@ -52,7 +52,7 @@ public class musicList{
     whetherAdd();
   }
 
-  public static boolean whetherAdd(){
+  public static void whetherAdd(){
     Scanner ans = new Scanner(System.in);
     System.out.println("Do you want to add any songs?(y/n)");
     String anw = ans.next().toLowerCase();
@@ -62,12 +62,12 @@ public class musicList{
     }
     else if (anw.equals("n"))
     {
-        return quit();
+        quit();
     }
     else
     {
         System.out.println("Please answer y or n.");
-        return whetherAdd();
+        whetherAdd();
     }
   }
 
@@ -85,7 +85,7 @@ public class musicList{
     String genre = scan.next();
 
     data newSong = new data(rank, song, artist, year, genre);
-    List songs = new ArrayList();
+    List<data> songs = new ArrayList<data>();
     songs.add(newSong);
 
     FileWriter fileWriter = null;
