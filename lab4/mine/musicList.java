@@ -90,8 +90,7 @@ public class musicList{
 
     FileWriter fileWriter = null;
     try {
-      fileWriter = new FileWriter(csvFile);
-      fileWriter.append("\n");
+      fileWriter = new FileWriter(csvFile, true);
 
       for(data Songs : songs){
         fileWriter.append(String.valueOf(Songs.getRank()));
@@ -105,12 +104,12 @@ public class musicList{
         fileWriter.append(Songs.getGenre());
         fileWriter.append("\n");
       }
+      fileWriter.flush();
     } catch (Exception e){
       System.out.println("Error in CsvFileWriter !!!");
       e.printStackTrace();
     } finally {
       try {
-        fileWriter.flush();
         fileWriter.close();
       } catch (IOException e){
         System.out.println("Error while flushing/closing fileWriter !!!");
