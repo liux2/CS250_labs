@@ -14,41 +14,65 @@ public class musicList{
   }
 
   public static void showList(){
+    //reference
+    SortInt RY = new SortInt();
+    SortString SAG = new SortString();
+
     BufferedReader br = null;
     String line = "";
     String cvsSplitBy = ",";
 
     System.out.println("Here is your playlist: "); //add to class
 
-            try {
+      try {
 
-            br = new BufferedReader(new FileReader(csvFile));
-            System.out.println("Rank   Song   Artist   Year   Genre");
-            while ((line = br.readLine()) != null) {
+      br = new BufferedReader(new FileReader(csvFile));
+      System.out.println("Rank   Song   Artist   Year   Genre");
+      while ((line = br.readLine()) != null) {
 
-                // use comma as separator
-                String[] Songs = line.split(cvsSplitBy);
+          // use comma as separator
+          String[] Songs = line.split(cvsSplitBy);
 
-                System.out.println(Songs[0] + "   " + Songs[1] + "   " + Songs[2] + "   " + Songs[3] + "   " + Songs[4]);
-
-            }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+          System.out.println(Songs[0] + "   " + Songs[1] + "   " + Songs[2] + "   " + Songs[3] + "   " + Songs[4]);
         }
+
+      } catch (FileNotFoundException e) {
+          e.printStackTrace();
+      } catch (IOException e) {
+          e.printStackTrace();
+      } finally {
+          if (br != null) {
+              try {
+                  br.close();
+              } catch (IOException e) {
+                  e.printStackTrace();
+              }
+          }
+      }
+    Scanner option = new Scanner(System.in);
     System.out.println("How would you like to sort your music list?");
     System.out.println("Available options: Rank, Song, Artist, Year, Genre");
-
+    try{
+    while(option.hasNext()){
+      String command = option.nextLine();
+      if(command.equals("Rank")){
+        RY.readRank();
+      }
+      else if (command.equals("Song")){
+        SAG.readSong();
+      }
+      else if(command.equals("Artist")){
+        SAG.readArtist();
+      }
+      else if(command.equals("Year")){
+        RY.readYear();
+      }
+      else if(command.equals("Genre")){
+        SAG.readGenre();
+      }
+    }
+  }catch (IOException e) {
+  }
     whetherAdd();
   }
 
