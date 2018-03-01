@@ -10,6 +10,9 @@ public class musicList{
 
     do{
       showList();
+      if(whetherAdd() == true){
+        addSongs();
+      }
     } while(quit());
   }
 
@@ -51,7 +54,7 @@ public class musicList{
       }
     Scanner option = new Scanner(System.in);
     System.out.println("How would you like to sort your music list?");
-    System.out.println("Available options: Rank, Song, Artist, Year, Genre");
+    System.out.println("Available options: Rank, Song, Artist, Year, Genre, Stop");
     try{
     while(option.hasNext()){
       String command = option.nextLine();
@@ -70,28 +73,33 @@ public class musicList{
       else if(command.equals("Genre")){
         SAG.readGenre();
       }
+      else if(command.equals("Stop")){
+        break;
+      }
+      else{
+        System.out.println("The commonds are Rank, Song, Artist, Year, Genre, and Stop");
+      }
     }
   }catch (IOException e) {
-  }
-    whetherAdd();
+    }
   }
 
-  public static void whetherAdd(){
+  public static boolean whetherAdd(){
     Scanner ans = new Scanner(System.in);
     System.out.println("Do you want to add any songs?(y/n)");
     String anw = ans.next().toLowerCase();
     if (anw.equals("y"))
     {
-        addSongs();
+        return true;
     }
     else if (anw.equals("n"))
     {
-        quit();
+        return false;
     }
     else
     {
         System.out.println("Please answer y or n.");
-        whetherAdd();
+        return whetherAdd();
     }
   }
 
@@ -145,8 +153,8 @@ public class musicList{
   public static boolean quit(){
     Scanner b = new Scanner(System.in);
 
-        System.out.println("Would you like to play again? (y/n)");
-        String yn = b.next().toLowerCase();
+      System.out.println("Would you like to play again? (y/n)");
+        String yn = b.nextLine().toLowerCase();
         if (yn.equals("y"))
         {
             return true;

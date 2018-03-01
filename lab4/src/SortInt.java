@@ -14,20 +14,18 @@ public class SortInt{
   }
 
   public void readRank() throws IOException{
-    int i;
     BufferedReader br = null;
     String line = "";
     String csvSplitBy = ",";
-    String [] output = new String[1000];
+    int rankCol = 0;
+    List <String> output = new ArrayList<>();
 
     try{
       br = new BufferedReader(new FileReader(csvFile));
       while((line = br.readLine()) != null){
         String[] Songs = line.split(csvSplitBy);
         //here put into Array
-        int n = 0;
-        output[n] = Songs[3];
-        n++;
+        output.add(Songs[rankCol]);
       }
     } catch (FileNotFoundException e){
       e.printStackTrace();
@@ -43,30 +41,25 @@ public class SortInt{
         }
     }//read rankNum
 
-    if(!output[0].equals(null)){                                      //Alphabetical sorting
       sortString(output);
-      for(int k=0; k<output.length; k++){
-        System.out.println(output[k]);
+      for(String s: output){
+        System.out.println(s);
       }
-    }
 
   }
 
   public void readYear() throws IOException{
-    int i;
     BufferedReader br = null;
     String line = "";
     String csvSplitBy = ",";
-    String[] output = new String[1000];
+    int yearCol = 3;
+    List <String> output = new ArrayList<>();
 
     try{
       br = new BufferedReader(new FileReader(csvFile));
       while((line = br.readLine()) != null){
         String[] Songs = line.split(csvSplitBy);
-        //here put into Array
-        int n = 0;
-        output[n] = Songs[3];
-        n++;
+        output.add(Songs[yearCol]);
       }
     } catch (FileNotFoundException e){
       e.printStackTrace();
@@ -82,27 +75,25 @@ public class SortInt{
         }
     }
 
-        if(!output[0].equals(null)){                                      //Alphabetical sorting
-          sortString(output);
-          for(int k=0; k<output.length; k++){
-            System.out.println(output[k]);
-          }
-        }
+    sortString(output);
+    for(String s: output){
+      System.out.println(s);
+    }
   }
 
-  public void sortString(String x[ ]){
+  public void sortString(List<String> x){
     int i,j;
     String temp;
 
-    for ( i = 0;  i < x.length - 1;  i++ )
+    for ( i = 0;  i < x.size() - 1;  i++ )
     {
-      for ( j = i + 1;  j < x.length;  j++ )
+      for ( j = i + 1;  j < x.size();  j++ )
       {
-        if ( x [ i ].compareToIgnoreCase( x [ j ] ) > 0 )
+        if ( x.get(i).compareToIgnoreCase( x.get(j) ) > 0 )
           {                                             // ascending sort
-            temp = x [ i ];
-            x [ i ] = x [ j ];    // swapping
-            x [ j ] = temp;
+            temp = x.get(i);
+            x.set(i,x.get(j));    // swapping
+            x.set(j, temp);
           }
         }
      }

@@ -14,20 +14,18 @@ public class SortString{
   }
 
   public void readSong() throws IOException{
-    int i;
     BufferedReader br = null;
     String line = "";
     String csvSplitBy = ",";
-    String[] output = new String[1000];
+    int songCol = 1;
+    List <String> output = new ArrayList<>();
 
     try{
       br = new BufferedReader(new FileReader(csvFile));
       while((line = br.readLine()) != null){
         String[] Songs = line.split(csvSplitBy);
         //here put into ArrayList
-        int n = 0;
-        output[n] = Songs[1];
-        n++;
+        output.add(Songs[songCol]);
       }
     } catch (FileNotFoundException e){
       e.printStackTrace();
@@ -43,30 +41,26 @@ public class SortString{
         }
     }//read rankNum
 
-    if(!output[0].equals(null)){                                      //Alphabetical sorting
-      sortString(output);
-      for(int k=0; k<output.length; k++){
-        System.out.println(output[k]);
-      }
+    sortString(output);
+    for(String s: output){
+      System.out.println(s);
     }
 
   }
 
   public void readArtist() throws IOException{
-    int i;
     BufferedReader br = null;
     String line = "";
     String csvSplitBy = ",";
-    String[] output = new String[1000];
+    int artistCol = 2;
+    List <String> output = new ArrayList<>();
 
     try{
       br = new BufferedReader(new FileReader(csvFile));
       while((line = br.readLine()) != null){
         String[] Songs = line.split(csvSplitBy);
         //here put into ArrayList
-        int n = 0;
-        output[n] = Songs[3];
-        n++;
+        output.add(Songs[artistCol]);
       }
     } catch (FileNotFoundException e){
       e.printStackTrace();
@@ -82,12 +76,10 @@ public class SortString{
         }
     }
 
-        if(!output[0].equals(null)){                                      //Alphabetical sorting
-          sortString(output);
-          for(int k=0; k<output.length; k++){
-            System.out.println(output[k]);
-          }
-        }
+    sortString(output);
+    for(String s: output){
+      System.out.println(s);
+    }
   }
 
   public void readGenre() throws IOException{
@@ -95,16 +87,15 @@ public class SortString{
     BufferedReader br = null;
     String line = "";
     String csvSplitBy = ",";
-    String[] output = new String[1000];
+    int genreCol = 4;
+    List <String> output = new ArrayList<>();
 
     try{
       br = new BufferedReader(new FileReader(csvFile));
       while((line = br.readLine()) != null){
         String[] Songs = line.split(csvSplitBy);
         //here put into ArrayList
-        int n = 0;
-        output[n] = Songs[3];
-        n++;
+        output.add(Songs[genreCol]);
       }
     } catch (FileNotFoundException e){
       e.printStackTrace();
@@ -120,28 +111,26 @@ public class SortString{
         }
     }
 
-        if(!output[0].equals(null)){                                      //Alphabetical sorting
-          sortString(output);
-          for(int k=0; k<output.length; k++){
-            System.out.println(output[k]);
-          }
-        }
+    sortString(output);
+    for(String s: output){
+      System.out.println(s);
+    }
   }
 
 
-  public void sortString(String x[ ]){
+  public void sortString(List<String> x){
     int i,j;
     String temp;
 
-    for ( i = 0;  i < x.length - 1;  i++ )
+    for ( i = 0;  i < x.size() - 1;  i++ )
     {
-      for ( j = i + 1;  j < x.length;  j++ )
+      for ( j = i + 1;  j < x.size();  j++ )
       {
-        if ( x [ i ].compareToIgnoreCase( x [ j ] ) > 0 )
+        if ( x.get(i).compareToIgnoreCase( x.get(j) ) > 0 )
           {                                             // ascending sort
-            temp = x [ i ];
-            x [ i ] = x [ j ];    // swapping
-            x [ j ] = temp;
+            temp = x.get(i);
+            x.set(i,x.get(j));    // swapping
+            x.set(j, temp);
           }
         }
      }
