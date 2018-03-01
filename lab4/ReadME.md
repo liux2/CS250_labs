@@ -1,6 +1,6 @@
----
-Title: Lab4 - Music List Sort
----
+
+##Lab4 - Music List Sort
+
 
 The following code is mine unless cited otherwise - Matt Jones, XingBang Liu, Travis Thomas.
 
