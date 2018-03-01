@@ -82,20 +82,20 @@ public class SortInt{
   }
 
   public void sortString(List<String> x){
-    int i,j;
+    int j;
+    boolean flag = true;
     String temp;
 
-    for ( i = 0;  i < x.size() - 1;  i++ )
-    {
-      for ( j = i + 1;  j < x.size();  j++ )
-      {
-        if ( x.get(i).compareToIgnoreCase( x.get(j) ) > 0 )
-          {                                             // ascending sort
-            temp = x.get(i);
-            x.set(i,x.get(j));    // swapping
-            x.set(j, temp);
-          }
+    while(flag){
+      flag = false;
+      for (j = 0;  j < x.size() - 1;  j++ ){
+        if ( x.get(j).compareToIgnoreCase( x.get(j+1)) > 0 ){
+          temp = x.get(j);
+          x.set(j, x.get(j+1));     // swapping
+          x.set(j+1, temp);
+          flag = true;
         }
-     }
+      }
+    }
   }
 }
