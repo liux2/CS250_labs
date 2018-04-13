@@ -1,6 +1,7 @@
 //package com.mxgraph.examples.swing;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import java.util.Scanner;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
