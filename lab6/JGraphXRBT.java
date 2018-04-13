@@ -12,7 +12,7 @@ public class JGraphXRBT extends JFrame
 	 *
 	 */
 	//private static final long serialVersionUID = -2707712944901661771L;
-	private RedBlack<Integer, String> tree = new RedBlack<Integer, String>();
+	//private RedBlack<Integer, String> tree = new RedBlack<Integer, String>();
 	private Boolean run = true;
 
 	public JGraphXRBT()
@@ -42,7 +42,7 @@ public class JGraphXRBT extends JFrame
 
 	public static void main(String[] args)
 	{
-		HelloWorld frame = new HelloWorld();
+		JGraphXRBT frame = new JGraphXRBT();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400, 320);
 		frame.setVisible(true);
