@@ -1,4 +1,4 @@
-package com.mxgraph.examples.swing;
+//package com.mxgraph.examples.swing;
 
 import javax.swing.JFrame;
 import java.util.Scanner;
