@@ -50,7 +50,7 @@ public class JGraphXRBT extends JFrame
         //setVisible(true);
 
         //Deletion strats
-        System.out.println("Would you like to delete a node?(y/n)");
+        /*System.out.println("Would you like to delete a node?(y/n)");
         if(scan.next().equals("n")){}
 
         else{
@@ -68,7 +68,7 @@ public class JGraphXRBT extends JFrame
               input2 = scan.nextInt();
             }
           }
-        }
+        }*/
 
 		}
 		finally
