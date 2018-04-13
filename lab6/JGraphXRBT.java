@@ -12,7 +12,7 @@ public class JGraphXRBT extends JFrame
 	 *
 	 */
 	//private static final long serialVersionUID = -2707712944901661771L;
-	//private RedBlack<Integer, String> tree = new RedBlack<Integer, String>();
+	private RedBlack<Integer, String> tree = new RedBlack<Integer, String>();
 	private Boolean run = true;
 
 	public JGraphXRBT()
@@ -22,14 +22,54 @@ public class JGraphXRBT extends JFrame
 		mxGraph graph = new mxGraph();
 		Object parent = graph.getDefaultParent();
 
+		getContentPane().add(new JLabel(tree));
+		pack();
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+
+		Scanner scan = new Scanner(System.in);
+
 		graph.getModel().beginUpdate();
 		try
 		{
-			Object v1 = graph.insertVertex(parent, null, "Hello", 20, 20, 80,
-					30);
-			Object v2 = graph.insertVertex(parent, null, "World!", 240, 150,
-					80, 30);
-			graph.insertEdge(parent, null, "Edge", v1, v2);
+			System.out.println("Add root node");
+        int input1 =scan.nextInt();
+
+        while(run){
+
+            tree.add(input1, "");
+            System.out.println("Would you like to add another node?(y/n)");
+            if(scan.next().equals("n")){
+              run = false;
+            }
+            else{
+              System.out.println("Enter node value");
+              input1 = scan.nextInt();
+            }
+        }
+        //setVisible(true);
+
+        //Deletion strats
+        /*System.out.println("Would you like to delete a node?(y/n)");
+        if(scan.next().equals("n")){}
+
+        else{
+          System.out.println("Enter node value");
+          int input2 = scan.nextInt();
+
+          while(run){
+            tree.delete(input2, "");
+            System.out.println("Would you like to delete another node?(y/n)");
+            if(scan.next().equals("n")){
+              run = false;
+            }
+            else{
+              System.out.println("Enter node value");
+              input2 = scan.nextInt();
+            }
+          }
+        }*/
+
 		}
 		finally
 		{
@@ -42,10 +82,10 @@ public class JGraphXRBT extends JFrame
 
 	public static void main(String[] args)
 	{
-		JGraphXRBT frame = new JGraphXRBT();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(400, 320);
-		frame.setVisible(true);
+		/*JGraphXRBT frame =*/ new JGraphXRBT();
+		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setSize(400, 320);
+		//frame.setVisible(true);
 	}
 
 }
