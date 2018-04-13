@@ -155,7 +155,7 @@ public class RedBlack<Key extends Comparable<Key>, Value> implements Icon {
             return this;
         }
 
-        public Node delete(Key k, Value v){
+        /*public Node delete(Key k, Value v){
           switch (k.compareTo(key)) {
           case LESS:
               parent = delete(k, v);
@@ -236,7 +236,7 @@ public class RedBlack<Key extends Comparable<Key>, Value> implements Icon {
           this.color = Color.BLACK;
           return this;
         }
-
+*/
         /** Returns the node for this key, or null. */
         public Node getNode(Key k) {
             switch (k.compareTo(key)) {
