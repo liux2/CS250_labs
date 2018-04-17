@@ -26,7 +26,7 @@ public class JGraphXRBT extends JFrame
 		getContentPane().add(new JLabel(tree));
 		pack();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
+		setVisible(false);
 
 		Scanner scan = new Scanner(System.in);
 
@@ -48,7 +48,7 @@ public class JGraphXRBT extends JFrame
               input1 = scan.nextInt();
             }
         }
-        //setVisible(true);
+        setVisible(true);
 
         //Deletion strats
         /*System.out.println("Would you like to delete a node?(y/n)");
