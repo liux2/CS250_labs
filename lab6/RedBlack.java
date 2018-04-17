@@ -64,7 +64,7 @@ public class RedBlack<Key extends Comparable<Key>, Value> implements Icon {
         public Node   left;
         public Node   right;
         public Node   parent;
-        public Node   sibline;
+        //public Node   sibline;
 
         /** Used by Empty */
         protected Node() {
@@ -87,21 +87,18 @@ public class RedBlack<Key extends Comparable<Key>, Value> implements Icon {
         }
 
         public Node add(Key k, Value v) {
-            switch (k.compareTo(key)) {
-            case LESS:
-                left = left.add(k, v);
-                break;
-
-            case GREATER:
-                right = right.add(k, v);
-                break;
-
-            case EQUAL:
-                // key is already in the tree; replace the value
-                value = v;
-                return this;
-            }
-
+          if(k.compareTo(key)<0){
+            left = left.add(k, v);
+            break;
+          }
+          else if(k.compareTo(key)>0){
+            right = right.add(k, v);
+            break;
+          }
+          else if(k.compareTo(key)==0){
+            value = v;
+            return this;
+          }
 
             // Check for two red nodes in a row: Red child and red grandchild
             if (left.isRed() && left.left.isRed()) {
@@ -154,89 +151,89 @@ public class RedBlack<Key extends Comparable<Key>, Value> implements Icon {
 
             return this;
         }
+        //
+        // public Node delete(Key k, Value v){
+        //   switch (k.compareTo(key)) {
+        //   case LESS:
+        //       parent = delete(k, v);
+        //       sibline = right.delete(k, v);
+        //       left = left.delete(k, v);
+        //       break;
+        //
+        //   case GREATER:
+        //       parent = delete(k, v);
+        //       sibline = left.delete(k, v);
+        //       right = right.delete(k, v);
+        //       break;
+        //
+        //   case EQUAL:
+        //       // key is already in the tree; replace the value
+        //       value = v;
+        //       return this;
+        //   }
+        //
+        //   while((this != root) && (Color.BLACK == this.color)){
+        //     if(k.compareTo(parent.key) > 0){
+        //       if(sibline.isRed()){
+        //         sibline.color = Color.BLACK;
+        //         sibline.right.color = Color.RED;
+        //         rightRotation(parent);
+        //         break;
+        //       }
+        //       else{
+        //         if((null == sibline.left) && (null == sibline.right)){
+        //           sibline.color = Color.RED;
+        //           this = parent;
+        //         }
+        //         else{
+        //           if((null != sibline.left) && (Color.RED == sibline.left.color)){
+        //             sibline.color = parent.color;
+        //             parent.color = Color.BLACK;
+        //             sibline.left.color = Color.BLACK;
+        //             rightRotation(parent);
+				// 			      break;
+        //           }
+        //           else{
+        //             sibline.right.color = Color.BLACK;
+        //             sibline.color = Color.RED;
+        //             leftRotation(sibline);
+        //           }
+        //         }
+        //       }
+        //     }
+        //     else{
+        //       if(Color.RED == sibline.color){
+        //         sibline.color = Color.BLACK;
+        //         sibline.left.color = Color.RED;
+        //         leftRotation(parent);
+				// 	      break;
+        //       }
+        //       else{
+        //         if((null == sibline.left) && (null == sibline.right)){
+        //           sibline.color = Color.RED;
+        //           this = parent;
+        //         }
+        //         else{
+        //           if((null != sibline.right) && (Color.RED == sibline.right.color)){
+        //             sibline.color = parent.color;
+        //             parent.color = Color.BLACK;
+        //             sibline.right.color = Color.BLACK;
+        //             leftRotation(parent);
+    		// 			      break;
+        //           }
+        //           else{
+        //             sibline.left.color = Color.BLACK;
+        //             sibline.color = Color.RED;
+        //             rightRotation(sibline);
+        //           }
+        //         }
+        //       }
+        //     }
+        //   }
+        //   this.color = Color.BLACK;
+        //   return this;
+        // }
 
-        /*public Node delete(Key k, Value v){
-          switch (k.compareTo(key)) {
-          case LESS:
-              parent = delete(k, v);
-              sibline = right.delete(k, v);
-              left = left.delete(k, v);
-              break;
-
-          case GREATER:
-              parent = delete(k, v);
-              sibline = left.delete(k, v);
-              right = right.delete(k, v);
-              break;
-
-          case EQUAL:
-              // key is already in the tree; replace the value
-              value = v;
-              return this;
-          }
-
-          while((this != root) && (Color.BLACK == this.color)){
-            if(k.compareTo(parent.key) > 0){
-              if(sibline.isRed()){
-                sibline.color = Color.BLACK;
-                sibline.right.color = Color.RED;
-                rightRotation(parent);
-                break;
-              }
-              else{
-                if((null == sibline.left) && (null == sibline.right)){
-                  sibline.color = Color.RED;
-                  this = parent;
-                }
-                else{
-                  if((null != sibline.left) && (Color.RED == sibline.left.color)){
-                    sibline.color = parent.color;
-                    parent.color = Color.BLACK;
-                    sibline.left.color = Color.BLACK;
-                    rightRotation(parent);
-							      break;
-                  }
-                  else{
-                    sibline.right.color = Color.BLACK;
-                    sibline.color = Color.RED;
-                    leftRotation(sibline);
-                  }
-                }
-              }
-            }
-            else{
-              if(Color.RED == sibline.color){
-                sibline.color = Color.BLACK;
-                sibline.left.color = Color.RED;
-                leftRotation(parent);
-					      break;
-              }
-              else{
-                if((null == sibline.left) && (null == sibline.right)){
-                  sibline.color = Color.RED;
-                  this = parent;
-                }
-                else{
-                  if((null != sibline.right) && (Color.RED == sibline.right.color)){
-                    sibline.color = parent.color;
-                    parent.color = Color.BLACK;
-                    sibline.right.color = Color.BLACK;
-                    leftRotation(parent);
-    					      break;
-                  }
-                  else{
-                    sibline.left.color = Color.BLACK;
-                    sibline.color = Color.RED;
-                    rightRotation(sibline);
-                  }
-                }
-              }
-            }
-          }
-          this.color = Color.BLACK;
-          return this;
-        }
-*/
         /** Returns the node for this key, or null. */
         public Node getNode(Key k) {
             switch (k.compareTo(key)) {
